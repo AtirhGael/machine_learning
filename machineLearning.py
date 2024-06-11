@@ -24,8 +24,14 @@ print(data_pandas.age>20)
 
 # %%
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+import pandas as pd
 
-data  = load_iris()
-print(data['target_names'])
+iris_data  = load_iris()
+X_train, X_test,y_train,y_test = train_test_split(iris_data['data'],iris_data['target'],random_state=0)
+# print(y_train.shape)
+iris_dataframe = pd.DataFrame(X_train,columns=iris_data.feature_names)
+print(iris_dataframe)
+grr = pd.scatter_matrix(iris_data,c=y_train, figsize=(15,15),marker='0', hist_kwds={'bin':20},s=60,alpha=8,cmap=mglearn.cm3)
 
 # %%
